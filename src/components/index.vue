@@ -12,7 +12,11 @@
           <tr :class="{'no-left-border':!border}" v-for="(week,j) in weekCount" :key="j">
             <td v-for="(day,m) in 7" :key="m">
               <slot name="dateCell" v-bind:date="currentDate(week,day)"></slot>
-              <div @click="dateClick(currentDate(week,day))"><Item :source="currentDate(week,day)"></Item></div>
+              <div @click="dateClick(currentDate(week,day))">
+                <slot v-bind:date="currentDate(week, day)">
+                    <Item :source="currentDate(week,day)"></Item>
+                </slot>
+              </div>
             </td>
           </tr>
         </tbody>
